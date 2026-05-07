@@ -1,0 +1,14 @@
+{
+    "name": "HackerTerm",
+    "description": "Un tema inmersivo de estilo terminal hacker con efectos CRT y glitch.",
+    "preview": "preview.png",
+    "usercss": "user.css",
+    "schemes": "color.ini",
+    "authors": [
+        {
+            "name": "Tu Nombre",
+            "url": "https://github.com/tu-usuario"
+        }
+    ],
+    "tags": ["dark", "terminal", "hacker", "matrix", "green"]
+}

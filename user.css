@@ -1,0 +1,488 @@
+/* ═══════════════════════════════════════════
+   🖥️ HackerTerm — Spotify Terminal Theme
+   Performance-optimized, hacker aesthetic
+   ═══════════════════════════════════════════ */
+
+/* ── Global Reset & Performance ── */
+* {
+  text-shadow: none !important;
+  /* Kill expensive blur/shadows Spotify adds */
+}
+
+/* Disable heavy backdrop filters globally */
+.backdrop,
+[class*="backdrop"],
+[style*="backdrop-filter"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ── Typography: Monospace everywhere ── */
+:root {
+  --font-family: 'Consolas', 'Courier New', 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+* {
+  font-family: var(--font-family) !important;
+  letter-spacing: 0px !important;
+}
+
+/* ── Scanline effect & CRT Flicker ── */
+@keyframes crt-flicker {
+  0% { opacity: 0.8; }
+  5% { opacity: 0.9; }
+  10% { opacity: 0.8; }
+  15% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  mix-blend-mode: multiply;
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* ── Background ── */
+body,
+.Root__main-view,
+.main-view-container {
+  background: var(--spice-main) !important;
+}
+
+/* ── Sidebar ── */
+.Root__nav-bar,
+.main-navBar-navBar,
+nav[class*="sidebar"],
+aside {
+  background: var(--spice-sidebar) !important;
+  border-right: 1px solid var(--spice-button) !important;
+}
+
+.main-navBar-navBarLink,
+.main-navBar-navBarLink span {
+  color: var(--spice-sidebar-text) !important;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+}
+
+.main-navBar-navBarLink:hover,
+.main-navBar-navBarLink:hover span {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.main-navBar-navBarLinkActive,
+.main-navBar-navBarLinkActive span {
+  color: var(--spice-button) !important;
+  opacity: 1;
+}
+
+/* ── Cards — Clean spacing ── */
+.main-card-card,
+.main-cardHeader-card {
+  background: var(--spice-card) !important;
+  border: 1px solid rgba(0, 255, 65, 0.1) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease;
+}
+
+.main-card-card:hover {
+  border-color: var(--spice-button) !important;
+  transform: none !important; /* Kill expensive transforms */
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.15) !important;
+}
+
+/* Remove card image zoom animation (expensive) */
+.main-card-card img,
+.main-cardImage-image {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* ── Track List ── */
+.main-trackList-trackListRow {
+  border-bottom: 1px solid rgba(0, 255, 65, 0.05) !important;
+  padding: 4px 0 !important;
+}
+
+.main-trackList-trackListRow:hover {
+  background: var(--spice-selected-row) !important;
+  box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.2) !important;
+}
+
+.main-trackList-trackListRow .main-trackList-rowTitle {
+  color: var(--spice-text) !important;
+  transition: text-shadow 0.2s;
+}
+
+.main-trackList-trackListRow:hover .main-trackList-rowTitle {
+  text-shadow: 0 0 8px var(--spice-button) !important;
+}
+
+/* ── Now Playing Bar ── */
+.main-nowPlayingBar-container,
+.Root__now-playing-bar {
+  background: var(--spice-player) !important;
+  border-top: 1px solid var(--spice-button) !important;
+}
+
+/* Progress bar */
+.playback-bar .progress-bar__slider {
+  background: var(--spice-button) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 10px var(--spice-button), 0 0 20px var(--spice-button) !important;
+}
+
+.playback-bar .progress-bar__bg {
+  background: rgba(0, 255, 65, 0.15) !important;
+  border-radius: 0 !important;
+}
+
+/* ── Buttons ── */
+button,
+.main-playPauseButton-button,
+.player-controls__buttons button {
+  border-radius: 2px !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.main-playPauseButton-button {
+  background: var(--spice-button) !important;
+  color: var(--spice-main) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.6) !important;
+}
+
+.main-playPauseButton-button:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.9) !important;
+  transform: scale(1.05) !important;
+}
+
+/* ── Top Bar ── */
+.main-topBar-container,
+.main-topBar-background {
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+.main-topBar-container {
+  border-bottom: 1px solid rgba(0, 255, 65, 0.08);
+}
+
+/* ── Scrollbars — Thin terminal style ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 65, 0.3);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 65, 0.5);
+}
+
+/* ── Inputs & Search ── */
+input,
+.main-search-searchInput input,
+.x-searchInput-searchInput input {
+  background: rgba(0, 255, 65, 0.05) !important;
+  border: 1px solid rgba(0, 255, 65, 0.2) !important;
+  color: var(--spice-text) !important;
+  border-radius: 2px !important;
+  font-family: inherit !important;
+}
+
+input:focus {
+  border-color: var(--spice-button) !important;
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.2) !important;
+}
+
+/* ── Remove expensive animations/effects ── */
+.main-shelf-shelf,
+.main-home-content,
+[class*="animation"],
+[class*="transition"] {
+  animation: none !important;
+}
+
+/* Kill album art background blur (HUGE perf hit) */
+.under-main-view,
+.main-entityHeader-backgroundColor,
+[class*="gradientBackground"],
+[class*="background-noise"],
+[class*="backgroundGradient"] {
+  background: var(--spice-main) !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* ── Links ── */
+a, a:visited {
+  color: var(--spice-subtext) !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: var(--spice-text) !important;
+}
+
+/* ── Playlist headers — less cluttered ── */
+.main-entityHeader-container {
+  padding: 16px 24px !important;
+  gap: 16px !important;
+}
+
+/* ── Notification popups ── */
+.main-notification-container {
+  background: var(--spice-notification) !important;
+  border: 1px solid var(--spice-button) !important;
+  border-radius: 2px !important;
+  color: var(--spice-text) !important;
+  font-family: inherit !important;
+}
+
+/* ── Context menus ── */
+.main-contextMenu-menu {
+  background: var(--spice-card) !important;
+  border: 1px solid rgba(0, 255, 65, 0.2) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.main-contextMenu-menuItem:hover {
+  background: var(--spice-selected-row) !important;
+}
+
+/* ── Modal/Popup (for Audio Enhancer etc) ── */
+.GenericModal__overlay {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: none !important;
+}
+
+.GenericModal {
+  background: var(--spice-card) !important;
+  border: 1px solid var(--spice-button) !important;
+  border-radius: 2px !important;
+}
+
+/* ── Selection highlight ── */
+::selection {
+  background: rgba(0, 255, 65, 0.3);
+  color: #fff;
+}
+
+/* ── Spacing fixes — "not everything bunched together" ── */
+.main-shelf-shelf {
+  margin-bottom: 24px !important;
+}
+
+.main-gridContainer-gridContainer {
+  gap: 16px !important;
+}
+
+.main-home-content {
+  padding: 16px 24px !important;
+}
+
+.main-shelf-title {
+  margin-bottom: 12px !important;
+}
+
+section {
+  margin-bottom: 16px !important;
+}
+
+/* ── Album art — ASCII Matrix Filter ── */
+img {
+  image-rendering: auto;
+}
+
+.cover-art img,
+.main-image-image {
+  border-radius: 0 !important;
+  border: 1px solid var(--spice-button) !important;
+  
+  /* Convert to pixelated green monochrome */
+  filter: grayscale(100%) contrast(160%) brightness(0.7) sepia(100%) hue-rotate(70deg) saturate(300%) !important;
+  image-rendering: pixelated !important;
+  opacity: 0.85;
+  transition: filter 0.3s ease, opacity 0.3s ease !important;
+}
+
+/* On hover, reveal the original image slightly + Glitch */
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+  40% { transform: translate(-2px, -2px); filter: hue-rotate(-90deg); }
+  60% { transform: translate(2px, 2px); filter: hue-rotate(45deg); }
+  80% { transform: translate(2px, -2px); filter: hue-rotate(-45deg); }
+  100% { transform: translate(0); }
+}
+
+.main-card-card:hover .main-image-image,
+.cover-art:hover img,
+.main-image-image:hover {
+  filter: grayscale(20%) contrast(120%) sepia(0%) hue-rotate(0deg) saturate(150%) brightness(1.2) !important;
+  image-rendering: auto !important;
+  opacity: 1;
+  animation: glitch-anim 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+  box-shadow: 0 0 15px var(--spice-button) !important;
+}
+
+/* ASCII data block illusion */
+.main-cardImage-imageWrapper::after,
+.cover-art::after {
+  content: "01001 10100 01110 10011 00101 11010";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  color: var(--spice-button);
+  font-family: var(--font-family);
+  font-size: 8px;
+  line-height: 8px;
+  word-break: break-all;
+  overflow: hidden;
+  opacity: 0.2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s;
+}
+
+.main-card-card:hover .main-cardImage-imageWrapper::after,
+.cover-art:hover::after {
+  opacity: 0;
+}
+
+/* ── Subtle glow on active elements ── */
+.main-trackList-active .main-trackList-rowTitle,
+.main-trackList-active .main-trackList-rowMainContent {
+  color: var(--spice-button) !important;
+  text-shadow: 0 0 8px var(--spice-button), 0 0 15px var(--spice-button) !important;
+}
+
+/* ── Tabs ── */
+.main-topBar-topbarContent button[aria-selected="true"] {
+  border-bottom: 2px solid var(--spice-button) !important;
+  color: var(--spice-button) !important;
+}
+
+/* ═══════════════════════════════════════════
+   👾 ASCII & HACKER TERMINAL FLAVOR (Pure CSS, 0% CPU impact)
+   ═══════════════════════════════════════════ */
+
+/* 1. Sidebar Links Prefix (root@spotify:~#) */
+.main-navBar-navBarLink span::before {
+  content: "root@spfy:~# ";
+  color: var(--spice-button);
+  opacity: 0.5;
+  font-size: 0.9em;
+  margin-right: 6px;
+  font-family: inherit;
+  transition: opacity 0.2s;
+}
+.main-navBar-navBarLink:hover span::before {
+  opacity: 1;
+  text-shadow: 0 0 5px var(--spice-button);
+}
+
+/* 2. Active Track Blinking Cursor */
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.main-trackList-active .main-trackList-rowTitle::after {
+  content: " █";
+  color: var(--spice-button);
+  animation: blink-cursor 1s step-end infinite;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* 3. Playlist / Album Titles ASCII Brackets + Typing Effect */
+@keyframes typing {
+  from { max-width: 0; }
+  to { max-width: 100%; }
+}
+
+.main-entityHeader-title {
+  display: inline-flex;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 1.5s steps(40, end);
+}
+
+.main-entityHeader-title::before {
+  content: "[ ";
+  color: var(--spice-button);
+  opacity: 0.7;
+  text-shadow: 0 0 5px var(--spice-button);
+}
+.main-entityHeader-title::after {
+  content: " ]";
+  color: var(--spice-button);
+  opacity: 0.7;
+  text-shadow: 0 0 5px var(--spice-button);
+}
+
+/* 4. Section Titles Prefix (e.g. "Recently Played") */
+.main-shelf-title::before {
+  content: "> ./";
+  color: var(--spice-button);
+  margin-right: 8px;
+}
+
+/* 5. Terminal Dotted Borders for Cards instead of solid lines */
+.main-card-card {
+  border: 1px dotted rgba(0, 255, 65, 0.3) !important;
+}
+.main-card-card:hover {
+  border: 1px dashed var(--spice-button) !important;
+}
+
+/* 6. Command Prompt style Search Input */
+.main-search-searchInput input::placeholder {
+  color: rgba(0, 255, 65, 0.4) !important;
+  opacity: 1 !important;
+}
+.main-search-searchInput::before {
+  content: "C:\\> " !important;
+  position: absolute;
+  left: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--spice-button);
+  z-index: 10;
+  font-family: inherit;
+  font-size: 14px;
+}
+.main-search-searchInput input {
+  padding-left: 70px !important; /* Make room for C:\> */
+}
+/* Hide default search icon to look more terminal-like */
+.main-search-searchInput .x-searchInput-searchIcon {
+  display: none !important;
+}
+
+/* 7. Hover effects on tracks -> Arrow prefix */
+.main-trackList-trackListRow:hover .main-trackList-rowTitle::before {
+  content: "» ";
+  color: var(--spice-button);
+}
